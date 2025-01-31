@@ -27,9 +27,6 @@ const BoardsUsers = sequelize.define('boards_users', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true}
 })
 
-Users.hasMany(Boards)
-Boards.belongsTo(Users)
-
 Users.hasMany(Tasks)
 Tasks.belongsTo(Users)
 

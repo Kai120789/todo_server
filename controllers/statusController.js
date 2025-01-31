@@ -1,7 +1,7 @@
 const {Statuses} = require('../models/models')
 const ApiError = require('../errors/ApiErrors')
 
-class StatusCollector {
+class StatusController {
     async create(req, res, next) {
         const {status} = req.body
         try {
@@ -25,4 +25,4 @@ class StatusCollector {
     }   
 }
 
-module.exports = new StatusCollector()
+module.exports = new StatusController()

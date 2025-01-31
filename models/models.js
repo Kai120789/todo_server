@@ -19,7 +19,7 @@ const Statuses = sequelize.define('statuses', {
 
 const Tasks = sequelize.define('tasks', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    titile: {type: DataTypes.STRING, allowNull: false},
+    title: {type: DataTypes.STRING, allowNull: false},
     description: {type: DataTypes.STRING, allowNull: false},
 })
 

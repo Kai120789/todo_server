@@ -1,6 +1,7 @@
 const Router = require("express")
 const router = new Router()
 const taskController = require("../controllers/taskController")
+const authMiddleware = require("../middleware/authMiddleware")
 
 router.post('/', authMiddleware, taskController.create) // create task
 router.put('/:id', authMiddleware, taskController.update) // update task

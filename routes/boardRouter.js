@@ -1,6 +1,7 @@
 const Router = require("express")
 const router = new Router()
 const boardsController = require("../controllers/boardController")
+const authMiddleware = require("../middleware/authMiddleware")
 
 router.post('/', authMiddleware, boardsController.create) // create board
 router.put('/:id', authMiddleware, boardsController.update) // update board

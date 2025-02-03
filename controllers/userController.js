@@ -37,7 +37,7 @@ class UserController {
 
         res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000 })
         
-        return res.json({accessToken})
+        return res.json({accessToken, user})
     }
 
     async login(req, res, next) {
@@ -52,21 +52,16 @@ class UserController {
         }
         const {accessToken, refreshToken} = generateJWT(user.id, user.login)
         
-        res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 15 * 60 * 1000 })
+        res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 15 * 60 * 1000, sameSite: 'None', secure: false })
 
-        res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000 })
+        res.cookie('refreshToken', refreshToken, { httpOnly: true, maxAge: 30 * 24 * 60 * 60 * 1000, sameSite: 'None', secure: false })
         
-        return res.json({accessToken})
+        return res.json({accessToken, user})
     }
 
     async check(req, res, next) {
-        const {login, password} = req.body
-        const user = await Users.findOne({where: {login}})
-        if (!user) {
-            return next(ApiError.internal('user not found'))
-        }
 
-        const {accessToken, refreshToken} = generateJWT(user.id, user.login)
+        const {accessToken, refreshToken} = generateJWT(req.user.id, req.user.login)
         
         res.cookie('accessToken', accessToken, { httpOnly: true, maxAge: 15 * 60 * 1000 })
 

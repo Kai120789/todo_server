@@ -11,6 +11,11 @@ class StatusController {
             return next(ApiError.internal('failed to create new status', error))
         }
     }
+
+    async getAll(req, res, next) {
+        const statuses = await Statuses.findAll()
+        return res.json(statuses)
+    }
     
 
     async delete(req, res, next) {

@@ -54,6 +54,12 @@ class BoardsController {
         const board2user = await BoardsUsers.create({boardId, userId})
         return res.json(board2user)
     }
+
+    async getAllBoardsByUserID(req, res, next) {
+        const userId = req.params
+        const board2user = await BoardsUsers.findAll({where: userId})
+        return res.json(board2user)
+    }
 }
 
 module.exports = new BoardsController()

@@ -71,14 +71,14 @@ class UserController {
     }
 
     async logout(req, res, next) {
-        const {login, password} = req.body
+        const {login} = req.body
         const user = await Users.findOne({where: {login}})
         if (!user) {
             return next(ApiError.internal('user not found'))
         }
 
-        res.cookie('accessToken', '', { httpOnly: true, maxAge: 0 })
-        res.cookie('refreshToken', '', { httpOnly: true, maxAge: 0 })
+        res.clearCookie("accessToken");
+        res.clearCookie("refreshToken");
 
         return res.json({message: 'successfully logged out'})
     }

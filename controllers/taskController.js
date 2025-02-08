@@ -12,7 +12,7 @@ class TaskController {
         }
     }
 
-    async update(req, res, next) {
+    async updateTask(req, res, next) {
         const {title, description, userId, boardId, statusId} = req.body 
         const {id} = req.params
         const task = await Tasks.findOne({where: {id}})

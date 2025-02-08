@@ -3,9 +3,9 @@ const ApiError = require('../errors/ApiErrors')
 
 class TaskController {
     async create(req, res, next) {
-        const {title, description, userId, boardId, statusId} = req.body
+        const {title, description, userId, boardId} = req.body
         try {
-            const task = await Tasks.create({title, description, userId, boardId, statusId})
+            const task = await Tasks.create({title, description, userId, boardId, statusId : 1})
             return res.json(task)
         } catch (error) {
             return next(ApiError.internal('failed to create new task', error))

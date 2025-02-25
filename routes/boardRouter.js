@@ -9,7 +9,7 @@ router.get('/', authMiddleware, boardsController.getAll) // get all boards
 router.get('/:id', authMiddleware, boardsController.getOne) // get board by id
 router.delete('/:id', authMiddleware, boardsController.delete) // delete board by id
 
-router.post('/:boardId', authMiddleware, boardsController.addUserToBoard) // add user to board
+router.post('/add/:boardId', authMiddleware, boardsController.addUserToBoard) // add user to board
 router.get('/user/:userId', authMiddleware, boardsController.getAllBoardsByUserID) // get all boards
 
 module.exports = router
